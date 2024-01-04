@@ -1,18 +1,32 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, Image} from 'react-native';
 
 type MyComponentProps = {
   artWorks: {
     title: string;
-  }[];
+    author: string;
+    img: string;
+  };
 };
 
 const ArtList: React.FC<MyComponentProps> = ({artWorks}) => {
+  const img = artWorks.img
+    ? `https://www.artic.edu/iiif/2/${artWorks.img}/full/843,/0/default.jpg`
+    : 'https://cdn.vectorstock.com/i/preview-1x/48/06/image-preview-icon-picture-placeholder-vector-31284806.jpg';
   return (
     <View style={styles.container}>
-      {artWorks.map(item => (
-        <Text key={item.title}>{item.title}</Text>
-      ))}
+      <View style={styles.card}>
+        <Image
+          source={{
+            uri: img,
+          }}
+          style={styles.thumbnail}
+        />
+        <View style={styles.content}>
+          <Text style={styles.title}>{artWorks.title}</Text>
+          <Text style={styles.detail}>{artWorks.author}</Text>
+        </View>
+      </View>
     </View>
   );
 };
@@ -26,6 +40,33 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 100,
     fontWeight: 'bold',
+  },
+  card: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 16,
+    borderWidth: 1,
+    borderColor: '#ddd',
+    borderRadius: 8,
+    margin: 8,
+  },
+  thumbnail: {
+    width: '33%',
+    aspectRatio: 1, // Maintains the aspect ratio of the image
+    marginRight: 16,
+    borderRadius: 4,
+  },
+  content: {
+    flex: 1,
+  },
+  title: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 8,
+  },
+  detail: {
+    fontSize: 14,
+    color: '#555',
   },
 });
 

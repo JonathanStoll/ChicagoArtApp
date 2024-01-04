@@ -1,67 +1,58 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, {useEffect, useState} from 'react';
-import {View, Text, StyleSheet, Button} from 'react-native';
+import {FlatList, ActivityIndicator} from 'react-native';
 import axios from 'axios';
 import ArtList from '../components/artList';
 
-type MyComponentProps = {
-  navigation: any;
-};
-
-const Home: React.FC<MyComponentProps> = ({navigation}) => {
+const Home: React.FC = ({}) => {
   interface ArtWork {
+    id: number;
     title: string;
+    author: string;
+    img: string;
   }
 
   const [artWorks, setArtWorks] = useState<ArtWork[]>([]);
+  const [page, setpage] = useState<number>(1);
+  const [loading, setLoading] = useState<boolean>(true);
+
+  const fetchData = async (): Promise<void> => {
+    setLoading(true);
+    try {
+      const response = await axios.get(
+        `https://api.artic.edu/api/v1/artworks?page=${page}&limit=20`,
+      );
+      const newArray: ArtWork[] = response.data.data.map((element: any) => ({
+        id: element.id,
+        title: element.title,
+        author: element.artist_title,
+        img: element.image_id,
+      }));
+      setArtWorks([...artWorks, ...newArray]);
+      setpage(page + 1);
+      setLoading(false);
+      console.log(artWorks);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   useEffect(() => {
-    interface NewElement {
-      title: string;
-    }
-    const fetchData = async (): Promise<void> => {
-      try {
-        const response = await axios.get(
-          'https://api.artic.edu/api/v1/artworks',
-        );
-        const newArray: NewElement[] = response.data.data.map(
-          (element: any) => ({
-            title: element.title,
-          }),
-        );
-        setArtWorks(newArray);
-        console.log(response.data.data);
-        console.log(newArray);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
     fetchData();
   }, []);
-  return (
-    <View style={styles.container}>
-      <Text style={styles.text}>Home</Text>
-      {artWorks.length > 0 && <ArtList artWorks={artWorks} />}
 
-      <Button
-        title="Go to Details"
-        onPress={() => navigation.navigate('Details')}
+  const renderItem = ({item}: {item: ArtWork}) => <ArtList artWorks={item} />;
+  return (
+    <>
+      <FlatList
+        data={artWorks}
+        renderItem={renderItem}
+        keyExtractor={item => item.id.toString()}
+        onEndReached={fetchData}
       />
-      <Button title="Go to fsvs" onPress={() => navigation.navigate('Favs')} />
-    </View>
+      {loading && <ActivityIndicator size="large" color="#00ff00" />}
+    </>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  text: {
-    fontSize: 100,
-    fontWeight: 'bold',
-  },
-});
 
 export default Home;
