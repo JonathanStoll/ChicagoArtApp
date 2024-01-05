@@ -3,6 +3,7 @@ import React, {useEffect, useState} from 'react';
 import {FlatList, ActivityIndicator, Pressable} from 'react-native';
 import axios from 'axios';
 import ArtList from '../components/artList';
+import Header from '../components/header';
 import {useNavigation} from '@react-navigation/native';
 import {RootStackProps} from '../types';
 
@@ -58,6 +59,7 @@ const Home: React.FC = () => {
 
   return (
     <>
+      <Header title={'Home'} isHome />
       <FlatList
         data={artWorks}
         renderItem={renderItem}

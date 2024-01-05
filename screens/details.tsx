@@ -13,6 +13,8 @@ import axios from 'axios';
 import {useRoute, RouteProp} from '@react-navigation/native';
 import {RootStackParamList} from '../types';
 import HTML from 'react-native-render-html';
+import Header from '../components/header';
+import FloatingHeartButton from '../components/favButton';
 
 const Details: React.FC = () => {
   type RouteParams = {
@@ -48,24 +50,28 @@ const Details: React.FC = () => {
   }, []);
 
   return (
-    <ScrollView>
-      <View style={styles.container}>
-        <View style={{backgroundColor: 'grey', width: '100%'}}>
-          <Image
-            source={{
-              uri: `https://www.artic.edu/iiif/2/${art.image_id}/full/843,/0/default.jpg`,
-            }}
-            style={styles.image}
-          />
+    <>
+      <Header title={'Art'} />
+      <FloatingHeartButton item={art} />
+      <ScrollView>
+        <View style={styles.container}>
+          <View style={{backgroundColor: 'grey', width: '100%'}}>
+            <Image
+              source={{
+                uri: `https://www.artic.edu/iiif/2/${art.image_id}/full/843,/0/default.jpg`,
+              }}
+              style={styles.image}
+            />
+          </View>
+          <View style={styles.textContainer}>
+            <Text style={styles.title}>{art.title}</Text>
+            <Text style={styles.artist}>{art.artist_display}</Text>
+            <HTML source={{html: art.description}} />
+          </View>
         </View>
-        <View style={styles.textContainer}>
-          <Text style={styles.title}>{art.title}</Text>
-          <Text style={styles.artist}>{art.artist_display}</Text>
-          <HTML source={{html: art.description}} />
-        </View>
-      </View>
-      {loading && <ActivityIndicator size="large" color="#00ff00" />}
-    </ScrollView>
+        {loading && <ActivityIndicator size="large" color="#00ff00" />}
+      </ScrollView>
+    </>
   );
 };
 
