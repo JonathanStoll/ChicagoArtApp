@@ -37,8 +37,6 @@ const ArtList: React.FC<MyComponentProps> = ({artWorks}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
   },
   text: {
     fontSize: 100,
@@ -46,12 +44,17 @@ const styles = StyleSheet.create({
   },
   card: {
     flexDirection: 'row',
-    alignItems: 'center',
-    padding: 16,
-    borderWidth: 1,
-    borderColor: '#ddd',
+    margin: 16,
+    backgroundColor: '#ffffff',
     borderRadius: 8,
-    margin: 8,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
   thumbnail: {
     width: '33%',
@@ -61,15 +64,18 @@ const styles = StyleSheet.create({
   },
   content: {
     flex: 1,
+    paddingTop: 16
   },
   title: {
     fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 8,
+    textAlign: 'left', // Align text to the left
   },
   detail: {
     fontSize: 14,
     color: '#555',
+    textAlign: 'left', // Align text to the left
   },
 });
 
