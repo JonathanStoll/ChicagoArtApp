@@ -1,18 +1,21 @@
 import React from 'react';
 import {View, Text, StyleSheet, Image} from 'react-native';
 
+type ArtWork = {
+  title: string;
+  author: string;
+  img: string;
+};
+
 type MyComponentProps = {
-  artWorks: {
-    title: string;
-    author: string;
-    img: string;
-  };
+  artWorks: ArtWork;
 };
 
 const ArtList: React.FC<MyComponentProps> = ({artWorks}) => {
   const img = artWorks.img
-    ? `https://www.artic.edu/iiif/2/${artWorks.img}/full/843,/0/default.jpg`
+    ? `https://www.artic.edu/iiif/2/${artWorks.img}/full/150,/0/color.jpg`
     : 'https://cdn.vectorstock.com/i/preview-1x/48/06/image-preview-icon-picture-placeholder-vector-31284806.jpg';
+
   return (
     <View style={styles.container}>
       <View style={styles.card}>
