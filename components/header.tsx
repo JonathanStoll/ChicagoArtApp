@@ -1,24 +1,19 @@
 import React from 'react';
 import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
-import {faHeart, faArrowLeft} from '@fortawesome/free-solid-svg-icons';
+import {faArrowLeft} from '@fortawesome/free-solid-svg-icons';
 import {useNavigation} from '@react-navigation/native';
 import {RootStackProps} from '../types';
 
 type MyComponentProps = {
   title: string;
   isHome?: boolean;
-  isFavs?: boolean;
 };
-const Header: React.FC<MyComponentProps> = ({title, isHome, isFavs}) => {
+const Header: React.FC<MyComponentProps> = ({title, isHome}) => {
   const navigation = useNavigation<RootStackProps>();
 
   const handleGoBack = () => {
     (navigation as any).goBack();
-  };
-
-  const handleGoToFavs = () => {
-    (navigation as any).navigate('Favs');
   };
 
   return (
@@ -29,11 +24,6 @@ const Header: React.FC<MyComponentProps> = ({title, isHome, isFavs}) => {
         </TouchableOpacity>
       )}
       <Text style={styles.title}>{title}</Text>
-      {!isFavs && (
-        <TouchableOpacity onPress={handleGoToFavs} style={{height: 20}}>
-          <FontAwesomeIcon icon={faHeart} />
-        </TouchableOpacity>
-      )}
     </View>
   );
 };
