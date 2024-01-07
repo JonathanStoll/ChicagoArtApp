@@ -8,6 +8,7 @@ import {
   Image,
   ScrollView,
   Dimensions,
+  useWindowDimensions,
 } from 'react-native';
 import axios from 'axios';
 import {useRoute, RouteProp} from '@react-navigation/native';
@@ -30,6 +31,8 @@ const Details: React.FC = () => {
   const [art, setArt] = useState<artData>({});
   const route = useRoute<DetailsRouteProp>();
   const {id} = route.params;
+  const windowDimensions = useWindowDimensions();
+  const screenWidth = windowDimensions.width;
   const fetchData = async (): Promise<void> => {
     setLoading(true);
     try {
@@ -66,7 +69,12 @@ const Details: React.FC = () => {
           <View style={styles.textContainer}>
             <Text style={styles.title}>{art.title}</Text>
             <Text style={styles.artist}>{art.artist_display}</Text>
-            {art.description && <HTML source={{html: art.description}} />}
+            {art.description && (
+              <HTML
+                source={{html: art.description}}
+                contentWidth={screenWidth}
+              />
+            )}
           </View>
         </View>
         {loading && <ActivityIndicator size="large" color="#00ff00" />}

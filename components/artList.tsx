@@ -58,24 +58,24 @@ const styles = StyleSheet.create({
   },
   thumbnail: {
     width: '33%',
-    aspectRatio: 1, // Maintains the aspect ratio of the image
+    aspectRatio: 1,
     marginRight: 16,
     borderRadius: 4,
   },
   content: {
     flex: 1,
-    paddingTop: 16
+    paddingTop: 16,
   },
   title: {
     fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 8,
-    textAlign: 'left', // Align text to the left
+    textAlign: 'left',
   },
   detail: {
     fontSize: 14,
     color: '#555',
-    textAlign: 'left', // Align text to the left
+    textAlign: 'left',
   },
 });
 
