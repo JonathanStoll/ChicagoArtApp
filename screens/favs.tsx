@@ -34,7 +34,7 @@ const Favs: React.FC = () => {
   );
   return (
     <View style={styles.container}>
-      <Header title={'Favorites'} isFavs />
+      <Header title={'Favorites'} />
       <FlatList
         data={newFavArts}
         renderItem={renderItem}

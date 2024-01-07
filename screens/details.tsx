@@ -58,7 +58,7 @@ const Details: React.FC = () => {
       <FloatingHeartButton item={art} />
       <ScrollView>
         <View style={styles.container}>
-          <View style={{backgroundColor: 'grey', width: '100%'}}>
+          <View style={styles.imageContainer}>
             <Image
               source={{
                 uri: `https://www.artic.edu/iiif/2/${art.image_id}/full/843,/0/default.jpg`,
@@ -86,6 +86,7 @@ const Details: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     margin: 16,
+    marginBottom: 60,
     backgroundColor: '#ffffff',
     borderRadius: 8,
     shadowColor: '#000',
@@ -99,6 +100,11 @@ const styles = StyleSheet.create({
   },
   textContainer: {
     padding: 16,
+  },
+  imageContainer: {
+    backgroundColor: 'grey',
+    width: '100%',
+    borderRadius: 8,
   },
   image: {
     flex: 1,
