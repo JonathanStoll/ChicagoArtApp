@@ -2,7 +2,7 @@ import React from 'react';
 import {TouchableOpacity, StyleSheet} from 'react-native';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faHeart} from '@fortawesome/free-solid-svg-icons';
-import {addFav} from '../store/features/artSlice';
+import {addFav, removeFav} from '../store/features/artSlice';
 import {useAppDispatch, useAppSelector} from '../store/store';
 
 type MyComponentProps = {
@@ -12,12 +12,11 @@ type MyComponentProps = {
 const FloatingHeartButton: React.FC<MyComponentProps> = ({item}) => {
   const dispatch = useAppDispatch();
   const favArts = useAppSelector(state => state.art.favArts);
-  console.log(favArts);
   const isItemInStore =
     item && favArts.length > 0 && favArts.some(obj => obj.id === item.id);
   console.log(isItemInStore);
   const handlePress = () => {
-    !isItemInStore ? dispatch(addFav(item)) : console.log('in favs!');
+    !isItemInStore ? dispatch(addFav(item)) : dispatch(removeFav(item.id));
   };
 
   return (
