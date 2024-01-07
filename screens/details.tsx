@@ -66,7 +66,7 @@ const Details: React.FC = () => {
           <View style={styles.textContainer}>
             <Text style={styles.title}>{art.title}</Text>
             <Text style={styles.artist}>{art.artist_display}</Text>
-            <HTML source={{html: art.description}} />
+            {art.description && <HTML source={{html: art.description}} />}
           </View>
         </View>
         {loading && <ActivityIndicator size="large" color="#00ff00" />}
