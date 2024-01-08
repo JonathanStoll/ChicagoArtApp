@@ -24,6 +24,7 @@ const HomeStack = () => (
   <Stack.Navigator
     screenOptions={{
       headerShown: false,
+      animation: 'slide_from_bottom',
     }}>
     <Stack.Screen name="Home" component={Home} />
     <Stack.Screen name="Details" component={Details} />
@@ -34,6 +35,7 @@ const FavsStack = () => (
   <Stack.Navigator
     screenOptions={{
       headerShown: false,
+      animation: 'slide_from_bottom',
     }}>
     <Stack.Screen name="Favs" component={Favs} />
     <Stack.Screen name="Details" component={Details} />
@@ -65,6 +67,7 @@ function App(): React.JSX.Element {
               },
               tabBarActiveTintColor: 'red',
               tabBarInactiveTintColor: 'gray',
+              tabBarSwipeEnabled: false,
             })}>
             <Tab.Screen name="Home" component={HomeStack} />
             <Tab.Screen name="Favorites" component={FavsStack} />

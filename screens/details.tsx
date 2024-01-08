@@ -39,9 +39,8 @@ const Details: React.FC = () => {
       const response = await axios.get(
         `https://api.artic.edu/api/v1/artworks/${id}`,
       );
-      console.log(response.data.data.title);
+      console.log(response.data.data);
       setArt(response.data.data);
-      console.log(response.data.data.image_id);
       setLoading(false);
     } catch (error) {
       console.error(error);
@@ -72,6 +71,12 @@ const Details: React.FC = () => {
             {art.description && (
               <HTML
                 source={{html: art.description}}
+                contentWidth={screenWidth}
+              />
+            )}
+            {!art.description && (
+              <HTML
+                source={{html: art.on_loan_display}}
                 contentWidth={screenWidth}
               />
             )}
