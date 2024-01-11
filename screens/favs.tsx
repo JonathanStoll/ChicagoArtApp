@@ -38,7 +38,7 @@ const Favs: React.FC = () => {
       <FlatList
         data={newFavArts}
         renderItem={renderItem}
-        keyExtractor={item => item.id.toString()}
+        keyExtractor={(item, index) => index.toString()}
       />
     </View>
   );

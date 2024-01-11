@@ -56,7 +56,7 @@ function App(): React.JSX.Element {
               tabBarIcon: ({color, size}) => {
                 let iconName = faBars;
 
-                if (route.name === 'Home') {
+                if (route.name === 'HomeTab') {
                   iconName = faHouse;
                 } else if (route.name === 'Favorites') {
                   iconName = faHeart;
@@ -69,7 +69,7 @@ function App(): React.JSX.Element {
               tabBarInactiveTintColor: 'gray',
               tabBarSwipeEnabled: false,
             })}>
-            <Tab.Screen name="Home" component={HomeStack} />
+            <Tab.Screen name="HomeTab" component={HomeStack} />
             <Tab.Screen name="Favorites" component={FavsStack} />
           </Tab.Navigator>
         </NavigationContainer>
