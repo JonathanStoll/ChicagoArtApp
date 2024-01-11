@@ -63,7 +63,7 @@ const Home: React.FC = () => {
       <FlatList
         data={artWorks}
         renderItem={renderItem}
-        keyExtractor={item => item.id.toString()}
+        keyExtractor={(item, index) => index.toString()}
         onEndReached={fetchData}
       />
       {loading && <ActivityIndicator size="large" color="#00ff00" />}

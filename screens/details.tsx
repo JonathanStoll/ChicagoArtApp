@@ -68,15 +68,15 @@ const Details: React.FC = () => {
           <View style={styles.textContainer}>
             <Text style={styles.title}>{art.title}</Text>
             <Text style={styles.artist}>{art.artist_display}</Text>
-            {art.description && (
+            {art.on_loan_display && (
               <HTML
-                source={{html: art.description}}
+                source={{html: art.on_loan_display}}
                 contentWidth={screenWidth}
               />
             )}
-            {!art.description && (
+            {art.description && (
               <HTML
-                source={{html: art.on_loan_display}}
+                source={{html: art.description}}
                 contentWidth={screenWidth}
               />
             )}
