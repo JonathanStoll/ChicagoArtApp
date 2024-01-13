@@ -9,6 +9,7 @@ import {
   ScrollView,
   Dimensions,
   useWindowDimensions,
+  SafeAreaView,
 } from 'react-native';
 import axios from 'axios';
 import {useRoute, RouteProp} from '@react-navigation/native';
@@ -52,7 +53,7 @@ const Details: React.FC = () => {
   }, []);
 
   return (
-    <>
+    <SafeAreaView>
       <Header title={'Art'} />
       <FloatingHeartButton item={art} />
       <ScrollView>
@@ -84,7 +85,7 @@ const Details: React.FC = () => {
         </View>
         {loading && <ActivityIndicator size="large" color="#00ff00" />}
       </ScrollView>
-    </>
+    </SafeAreaView>
   );
 };
 

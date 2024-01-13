@@ -26,8 +26,12 @@ const ArtList: React.FC<MyComponentProps> = ({artWorks}) => {
           style={styles.thumbnail}
         />
         <View style={styles.content}>
-          <Text style={styles.title}>{artWorks.title}</Text>
-          <Text style={styles.detail}>{artWorks.author}</Text>
+          <Text style={styles.title} numberOfLines={3} ellipsizeMode="tail">
+            {artWorks.title}
+          </Text>
+          <Text style={styles.detail} numberOfLines={1} ellipsizeMode="tail">
+            {artWorks.author}
+          </Text>
         </View>
       </View>
     </View>
@@ -70,6 +74,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 8,
+    paddingRight: 8,
     textAlign: 'left',
   },
   detail: {
