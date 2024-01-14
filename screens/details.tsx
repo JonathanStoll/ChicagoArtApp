@@ -55,7 +55,6 @@ const Details: React.FC = () => {
   return (
     <SafeAreaView>
       <Header title={'Art'} />
-      <FloatingHeartButton item={art} />
       <ScrollView>
         <View style={styles.container}>
           <View style={styles.imageContainer}>
@@ -85,6 +84,7 @@ const Details: React.FC = () => {
         </View>
         {loading && <ActivityIndicator size="large" color="#00ff00" />}
       </ScrollView>
+      <FloatingHeartButton item={art} />
     </SafeAreaView>
   );
 };
@@ -111,6 +111,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'grey',
     width: '100%',
     borderRadius: 8,
+    // maxHeight: Dimensions.get('window').height / 2,
   },
   image: {
     flex: 1,
