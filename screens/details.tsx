@@ -40,7 +40,6 @@ const Details: React.FC = () => {
       const response = await axios.get(
         `https://api.artic.edu/api/v1/artworks/${id}`,
       );
-      console.log(response.data.data);
       setArt(response.data.data);
       setLoading(false);
     } catch (error) {
