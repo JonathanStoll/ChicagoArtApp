@@ -17,6 +17,7 @@ import {RootStackParamList} from '../types';
 import HTML from 'react-native-render-html';
 import Header from '../components/header';
 import FloatingHeartButton from '../components/favButton';
+import Animated from 'react-native-reanimated';
 
 const Details: React.FC = () => {
   type RouteParams = {
@@ -84,6 +85,13 @@ const Details: React.FC = () => {
         {loading && <ActivityIndicator size="large" color="#00ff00" />}
       </ScrollView>
       <FloatingHeartButton item={art} />
+      <Animated.View
+        style={{
+          width: 100,
+          height: 100,
+          backgroundColor: 'violet',
+        }}
+      />
     </SafeAreaView>
   );
 };
