@@ -25,7 +25,6 @@ const Favs: React.FC = () => {
     (navigation as any).navigate('Details', {
       id: item.id.toString(),
     });
-    console.log('navigate to: ', item.title);
   };
   const renderItem = ({item}: {item: ArtWork}) => (
     <Pressable onPress={() => onPress(item)}>

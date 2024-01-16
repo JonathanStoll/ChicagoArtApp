@@ -14,7 +14,6 @@ const FloatingHeartButton: React.FC<MyComponentProps> = ({item}) => {
   const favArts = useAppSelector(state => state.art.favArts);
   const isItemInStore =
     item && favArts.length > 0 && favArts.some(obj => obj.id === item.id);
-  console.log(isItemInStore);
   const handlePress = () => {
     !isItemInStore ? dispatch(addFav(item)) : dispatch(removeFav(item.id));
   };

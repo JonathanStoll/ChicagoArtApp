@@ -44,7 +44,6 @@ const Home: React.FC = () => {
     (navigation as any).navigate('Details', {
       id: item.id.toString(),
     });
-    console.log('navigate to: ', item.title);
   };
 
   useEffect(() => {
